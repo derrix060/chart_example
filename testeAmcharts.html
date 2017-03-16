@@ -19,12 +19,7 @@
 					"type": "serial",
 					"categoryField": "date",
 					"dataDateFormat": "YYYY-MM-DD",
-					"synchronizeGrid": 1,
-					"gridAboveGraphs": 1,
-					"sequencedAnimation": 0,
-					"export": {
-						"enabled": 1
-					},
+					"backgroundColor": "#4B0082",
 					"categoryAxis": {
 						"parseDates": 1
 					},
@@ -41,43 +36,47 @@
 						"enabled": 1,
 						"autoGridCount": 1,
 						"backgroundColor": "#FFFFFF",
-						"color": "#000000", //font color
+						"color": "000000", //font color
 						"dragIcon": "dragIconRectBigBlack",
 						"dragIconWidth": 36,
 						"graph": "graphMAINA",
 						"graphType": "line",
-						"gridColor": "#AAB3B3",
+						"gridColor": "AAB3B3",
 						"gridCount": 1,
 						"oppositeAxis": 0,
 						"scrollbarHeight": 80,
-                        "selectedColor": "#FFFFFF",
+                        "selectedColor": "FFFFFF",
 						"updateOnReleaseOnly": 1,
                         "offset": 50
 					},
 					"graphs": [
 						{
 							"id": "graphMAINA",
-			                "lineThickness": 3,
+			                "lineThickness": 4,
 							"title": "MAINA",
-							"valueField": "DEC"
-						},
-						{
-							"id": "graphCDI",
-			                "lineThickness": 1,
-							"title": "CDI",
-							"valueField": "CDI"
+							"valueField": "DEC",
+							"lineColor": "green"
 						},
 						{
 							"id": "graphIBOV",
 			                "lineThickness": 1,
 							"title": "IBOV",
-							"valueField": "ibov"
+							"valueField": "ibov",
+							"lineColor": "red"
+						},
+						{
+							"id": "graphCDI",
+			                "lineThickness": 1,
+							"title": "CDI",
+							"valueField": "CDI",
+							"lineColor": "orange"
 						},
 						{
 							"id": "graphUSD",
 			                "lineThickness": 1,
 							"title": "USD",
-							"valueField": "usd"
+							"valueField": "usd",
+							"lineColor": "black"
 						}
 					],
 					"valueAxes": [
@@ -85,7 +84,8 @@
 							"id": "ValueAxis-1",
 							"recalculateToPercents": 1, // or "logarithmic": true
 							"title": "",
-                            "position":"right"
+                            "position":"right",
+							"gridColor": "#FFFFFF",
 
 						}
 					],
