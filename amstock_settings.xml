@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Only the settings with values not equal to defaults are in this file. If you want to see the
+full list of available settings, check the amstock_settings.xml file in the amstock folder. -->
+<settings>
+  <margins>0</margins>  
+  <legend_position>top</legend_position>
+  <legend_width>180</legend_width>  
+  <max_series>0</max_series>
+                                              
+  <number_format>  
+    <letters>
+       <letter number="1000">K</letter>
+       <letter number="1000000">M</letter>
+       <letter number="1000000000">B</letter>
+    </letters>      
+  </number_format>
+  
+  <data_sets> 
+    <data_set did="0">
+		<title>FIA Maina</title>
+		<short>FIA Maina</short>
+		<color>4AA02C</color>
+         <file_name>dDec.csv</file_name>
+		 <compare_list_box selected="false"></compare_list_box>
+       <csv>
+         <reverse>true</reverse>
+         <separator>,</separator>
+         <date_format>YYYY-MM-DD</date_format>
+         <decimal_separator>.</decimal_separator>
+         <columns>
+           <column>date</column>
+           <column>close</column>
+         </columns>
+       </csv>
+    </data_set>
+	
+	<data_set did="1">
+		<title>Ibovespa</title>
+		<short>IBOV</short>
+		<color>E42217</color>
+         <file_name>ddibov.csv</file_name>
+		 <compare_list_box selected="true"></compare_list_box>
+       <csv>
+         <reverse>true</reverse>
+         <separator>,</separator>
+         <date_format>YYYY-MM-DD</date_format>
+         <decimal_separator>.</decimal_separator>
+         <columns>
+           <column>date</column>
+           <column>close</column>
+         </columns>
+       </csv>
+    </data_set>
+	
+	<data_set did="2">
+		<title>CDI</title>
+		<short>CDI</short>
+		<color>FF9900</color>
+         <file_name>ddcdi.csv</file_name>
+		 <compare_list_box selected="true"></compare_list_box>
+       <csv>
+         <reverse>true</reverse>
+         <separator>,</separator>
+         <date_format>YYYY-MM-DD</date_format>
+         <decimal_separator>.</decimal_separator>
+         <columns>
+           <column>date</column>
+           <column>close</column>
+         </columns>
+       </csv>
+    </data_set>
+	
+	<data_set did="3">
+		<title>USD</title>
+		<short>USD</short>
+		<color>404040</color>
+         <file_name>ddusd.csv</file_name>
+		 <compare_list_box selected="true"></compare_list_box>
+       <csv>
+         <reverse>true</reverse>
+         <separator>,</separator>
+         <date_format>YYYY-MM-DD</date_format>
+         <decimal_separator>.</decimal_separator>
+         <columns>
+           <column>date</column>
+           <column>close</column>
+         </columns>
+       </csv>
+    </data_set>
+  </data_sets>
+
+  <charts>
+  	<chart cid="0">
+  		<bg_color>F5F5F5</bg_color>
+      <border_color>#CCCCCC</border_color>
+      <border_alpha>100</border_alpha>
+      
+      <grid>
+        <x>
+          <color>FFFFFF</color>
+          <alpha>70</alpha>
+        </x>
+        <y_left>
+          <color>FFFFFF</color>
+          <alpha>70</alpha>
+        </y_left>        
+      </grid>
+  
+      <values>
+        <x>
+          <enabled>true</enabled>
+        </x>
+      </values>
+      
+      <legend>
+        <show_date>true</show_date>
+        <positive_color>4AA02C</positive_color>
+      </legend>
+      
+      <column_width>70</column_width>
+
+  		<graphs>
+  			<graph gid="0">
+          <fill_alpha>0</fill_alpha>  			
+  				<type>line</type>
+				<width>3</width>
+  				
+  				<data_sources>
+  				  <close>close</close>
+          </data_sources>
+		   <compare_source>close</compare_source>
+  		    <legend>
+            <date key="true" title="true"><![CDATA[<b>{close}</b>]]></date>
+            <period key="true" title="true"><![CDATA[open:<b>{open}</b> low:<b>{low}</b> high:<b>{high}</b> close:<b>{close}</b>]]></period>
+            <date_comparing key="true" title="true"><![CDATA[{close.percents}]]></date_comparing>
+            <period_comparing key="true" title="true"><![CDATA[{close.percents}]]></period_comparing>
+          </legend>  
+          <hidden>false</hidden>         
+  			</graph>  
+  			                       			
+  		</graphs>
+  	</chart>  
+
+
+  </charts>
+  
+  <data_set_selector>
+    <enabled>false</enabled>
+  </data_set_selector>
+  
+    <header>
+    <enabled>false</enabled>
+  </header>
+
+  <background>    
+    <color>ffffff</color>
+    <alpha>100</alpha>      
+  </background>    
+
+  <plot_area>
+    <margins>10</margins>
+    <bg_color>ffffff</bg_color>
+    <bg_alpha>100</bg_alpha>
+    <border_alpha>70</border_alpha>
+    <border_color>ffffff</border_color>
+    <border_width></border_width>
+    <corner_radius>8</corner_radius>
+    
+  </plot_area>
+
+  <scroller>
+    <enabled>true</enabled>
+    <graph_data_source>close</graph_data_source>
+    <graph_selected_color>4C787E</graph_selected_color>
+    <graph_selected_fill_color>4C787E</graph_selected_fill_color>
+    <graph_selected_fill_alpha>80</graph_selected_fill_alpha>	
+    <updateOnReleaseOnly>1</updateOnReleaseOnly>        
+    <!--<height>40</height>    
+    <graph_data_source>c0</graph_data_source>
+    <bg_color>f5f5f5</bg_color>
+    <selected_color>daf0fd</selected_color>
+    <resize_button_color>317dc9</resize_button_color>
+    <resize_button_style>dragger</resize_button_style>-->
+  </scroller>
+  
+  <date_formats>
+     <legend>
+        <days><![CDATA[<b>DD-MM-YYYY</b>]]></days>
+       <weeks><![CDATA[<b>month DD, YYYY</b>]]></weeks>
+       <months><![CDATA[<b>month YYYY</b>]]></months>
+       <years><![CDATA[<b>YYYY</b>]]></years>
+     </legend>
+  </date_formats>    
+
+</settings>

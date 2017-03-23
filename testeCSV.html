@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<style>
+			#chartcontainer {
+				width: 100%;
+				height: 400px;
+				position: relative;
+				oberflow: hidden;
+				}
+
+				#chartdiv {
+				width: 100%;
+				height: 400px;
+				}
+
+				.nav-button  {
+				width: 32px;
+				height: 32px;
+				background-color: transparent;
+				background-repeat: no-repeat;
+				background-position: center;
+				display: inline-block;
+				text-indent: -9999px;
+				overflow: hidden;
+				cursor: pointer;
+				opacity: 0.5;
+				position: absolute;
+				bottom: 35px;
+				z-index: 100;
+				}
+
+				.nav-button:hover {
+				opacity: 1;
+				}
+
+				.nav-button.disabled {
+				opacity: 0.2;
+				cursor: default;
+				}
+
+				.nav-button.nav-prev {
+				left: 0;
+				background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADV0lEQVRYR63XWeimcxQH8M8osmQ3zYSIrEm2sstSyHJDNGaKG2OKixFFuLBGJFu4IEsR4sK4QHYpTLYs4YaxK9nJFhf0nc7z9vT4v+/zvP3fc/PW+/x+53zP8jvnexYYLpvgRByFvbAjNq7rv+JTvIvn8QTyX68s6D3BrrgIp2F9fI3XsQY/1f3NsRP2x9b4Ew/hWnw0ycYkABviKpyL33An7sMH+HeM0ujbE6djBaLjZlxaoP53bRyAXbAK+b0JV+OXAdFqH9msDK/EhzgZH3d1zAVgXzxdiE/Fa1Ma7h4/BI9gXRyDd9oHugDi8Sv4DkdXvudpf+317fAsUisHtyPRBrBRFVcq+6AZGm8cCIjV+AEHNDXRBnADkq9DZxD2cVGL7pcQWxfmUAMgTy3VfWPzYYq4L8I+eGrgnVtwDnZPKhoA9+IkbD9ltcf4C9gZS+rl9OHYAp/jYSwPgE3xDW6d0vsYf7E8idGfsUP99oHI006fWBwAy/BANZD3+27W967x33FC5XeIijz1t9JdA+AuHFtPZVyHaytdXGFPDiPTGm9qL1F/LADewJfVqfrQz8J4Y+NxbBUAeZf34IIe6zGenO82D8/bJjIjlgXA37gc10wAMGvjMXUZLhkKIPM/3qeVRr7AYfXbl7Zx30cAvkf6QF8KUrnPtUCEgBwxDxCjFKQIv6pG1OfNLEGMijDP8DhsO4FotIHNBeLI6m59DjTf16nmtyo1sBQPFs97b6CGLojPKh1psUNkP7yZ9h0AIZtpCrcPqINJkZgGRAbScixqhtHdOKWGUXr6UOlGIiP2+p7LW1a6EvUVDYBMs/C2DKTzh1qvcw2IO3DxgLuJ9Fk1xNa0CUmQn4fDi5YN0DU6ss1ABpVizd5wXQO2DSAUOgQ08zqULM1mlpJRHUqWejsQf0V5l5RmuXi1Fo6Q0lmBiPFnapMKKf2k8WwuWr53Hf6nWM7L8wxDwp4tKZKxn/VtJOMWk0TiUeyB23AFfpwSSKr9SpyN9JcsJiPPJ0Wg+bZBGU5hJl/pmPfj7QkdMx0uBPUMnIn1igHHgbU578qQ5TTRyHKajplC/bZITNasuZbThfijaF6qPUvsWBkCoLmcheX4znoeQhvJ3pjwNuv5k7XQ9mbtP4Xuv29CATFFAAAAAElFTkSuQmCC);
+				}
+
+				.nav-button.nav-next {
+				right: 0;
+				background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADXElEQVRYR63XacilYxgH8N8osmTfJonIkqQZlMEooSGSIjIztg+zFB/MImKarBGNsYQv1iLrB0ONKaRGjRFGloYvjAmjZOwJkeg/3c/p6fGe8zznnPf+8r7nnOu+r/91Xf9rm6L72Q3n4nRMw6HYtVz/FZvxEd7AK8h3rWdKqwRH4nrMxo74Bu9iE34q9/fEYTgBB+APPIs78dkgHYMA7IzbsAi/4WE8iU/wb59H894xuAwLkTfuw40F1P+u9QNwBFYhf+/F7filg7fqInsUxVfjU1yAz5tvTATgOLxaEF+Ed4ZU3BSfiRewPc7Eh3WBJoBY/Ba2YlaJ95j6t10/CK8jXDm57ok6gF0KucLskyZReWVAQLyNHzCj4kQdwEokXqdMgtv7eS1vv4noui5CFYCkWth9T/VDi98vwXP4Z4T43I+rcFRCUQF4Aufj4A5sT1YsxtO4YgQQe+FLPI/5AbA7vsUDHaw/FWtrVj+Dy0cAESNSJ6YGwNxiTQrIxg4uXVJCVYmOAiKp/n6qawA8irNKqvSrcE1cSwuRqu9TdlP9unIieuP1l/LPe/i6VKoODuiJjAtiNfYJgOTl47h2GO1F9hrcXbs3jCfSI+YGwF+4GXeMACBXmiCSnpd2CMdNWDYZAALikaRUzYA0r+UtBvUAfI/UgVFCEB3pGS9jp6IwQ8kZJbSDMPRCEBJuKYVo2CiMqjx6eiRMGp6NAwcMGhMBG0f5diUNV4UDc5Bikjnv444uGEd5VByPDbg4ADJspig81JEH4yoPgDSkkHb/qhk9hgtLM/q5xQsh3HlDEq7+5N6lGcXrCysAh5e5LQ0pFW7QCdsDYr+ObG++FU8vKO14U30gWYE0mnS8jGVtIALkx46cqcROK3vDXbghX9YBZITOAJp+nZHsqyEfbxM/pIxk4duJ+LMJIJ+zXKwvC0fINlkgovy1skllKP2iQjvRWD69CP+dNMG6NtNafo/b06Ry0vZTKXun32IST7yIo/Egbhkh3mH7rbiy1JcsJj3LB3mg+i0ki+IQM/FKxXwKHwyomKlwx5YxbR52KINL3tkW8+bpspzGG1lOUzFD1O/KEJM1a6LldF/8Xsa8sD1LbN/TBUB1OQvLOY31PANtTvbGuLdaz9eUhbaVPv8Bz2/BbwFcjacAAAAASUVORK5CYII=);
+				}
+		</style>
+
+		<title>chart created with amCharts | amCharts</title>
+		<meta name="description" content="chart created using amCharts live editor" />
+		
+		<!-- amCharts javascript sources -->
+		<script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+		<script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+		<script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    
+		<!-- amCharts javascript code -->
+		<script type="text/javascript">
+			AmCharts.makeChart("chartdiv",
+				{
+					"type": "serial",
+                    "theme": "light",
+					"categoryField": "date",
+					"dataDateFormat": "YYYY-MM-DD",
+					"backgroundColor": "#4B0082",
+					"decimalSeparator": ",",
+					"percentPrecision": 0,
+					"thousandsSeparator": ".",
+					"categoryAxis": {
+						"parseDates": 1
+					},
+					"chartCursor": {
+						"enabled": 1,
+						"animationDuration": 0,
+						"bulletSize": 3,
+						"fullWidth": 1,
+						"selectWithoutZooming": 1,
+						"valueLineBalloonEnabled": 1,
+						"zoomable": 0
+					},
+					"chartScrollbar": {
+						"enabled": 1,
+						"autoGridCount": 1,
+						"backgroundColor": "#FFFFFF",
+						"color": "000000", //font color
+						"dragIcon": "dragIconRectBigBlack",
+						"dragIconWidth": 36,
+						"graph": "graphMAINA",
+						"graphType": "line",
+						"gridColor": "AAB3B3",
+						"gridCount": 1,
+						"oppositeAxis": 0,
+						"scrollbarHeight": 80,
+                        "selectedColor": "FFFFFF",
+						"updateOnReleaseOnly": 1,
+                        "offset": 50
+					},
+
+
+                    "dataLoader":{
+                        "url": "sources/geral.csv",
+                        "format": "csv",
+                        "reverse": 0,
+                        "async": 1,
+                        "delimiter": ",",
+                        "useColumnNames": 1
+                    },
+
+                    
+					"graphs": [
+						{
+							"id": "graphMAINA",
+			                "lineThickness": 4,
+							"title": "MAINA",
+							"valueField": "DEC",
+							"lineColor": "green",
+							"legendPeriodValueText": "[[percents.value.close]]%",
+							"legendValueText": "[[percents.value]]%",
+							"balloonText": "[[percents.value]]%",
+						},
+						{
+							"id": "graphIBOV",
+			                "lineThickness": 1,
+							"title": "IBOV",
+							"valueField": "ibov",
+							"lineColor": "red",
+							"legendPeriodValueText": "[[percents.value.close]]%",
+							"legendValueText": "[[percents.value]]%",
+							"balloonText": "[[percents.value]]%",
+						},
+						{
+							"id": "graphCDI",
+			                "lineThickness": 1,
+							"title": "CDI",
+							"valueField": "CDI",
+							"lineColor": "orange",
+							"legendPeriodValueText": "[[percents.value.close]]%",
+							"legendValueText": "[[percents.value]]%",
+							"balloonText": "[[percents.value]]%",
+						},
+						{
+							"id": "graphUSD",
+			                "lineThickness": 1,
+							"title": "USD",
+							"valueField": "usd",
+							"lineColor": "black",
+							"legendPeriodValueText": "[[percents.value.close]]%",
+							"legendValueText": "[[percents.value]]%",
+							"balloonText": "[[percents.value]]%",
+						}
+					],
+					
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"recalculateToPercents": 1, // or "logarithmic": true
+							"title": "",
+                            "position":"right",
+							"gridColor": "#FFFFFF",
+						}
+					],
+					"legend": {
+						"enabled": 1,
+						"useGraphSettings": 1
+					}
+				}
+			);
+		</script>
+	</head>
+	<body>
+
+		<div id="chartcontainer">
+			<a class="nav-button nav-prev" onclick="navChart(-10);"></a>
+			<a class="nav-button nav-next" onclick="navChart(10);"></a>
+			<div id="chartdiv"></div>
+		</div>
+		<div style="display: inline;">
+			From: 
+			<input class="amChartsInputField amcharts-start-date-input" style="background: transparent; border: 1px solid rgba(0, 0, 0, 0.298039); color: rgb(0, 0, 0); outline: none; text-align: center; width: 100px;"> 
+			to: 
+			<input class="amChartsInputField amcharts-end-date-input" style="background: transparent; border: 1px solid rgba(0, 0, 0, 0.298039); color: rgb(0, 0, 0); outline: none; text-align: center; width: 100px;">
+		
+		</div>
+	</body>
+</html>

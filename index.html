@@ -15,7 +15,7 @@
 <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
 <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-
+<script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
 <!-- Chart code -->
 <script>
 var chartMaina = [];
@@ -30,6 +30,8 @@ function generateChartData() {
   var firstDate = new Date();
   firstDate.setDate( firstDate.getDate() - delay );
   firstDate.setHours( 0, 0, 0, 0 );
+
+  
 
   for ( var i = 0; i < delay; i++ ) {
     var newDate = new Date( firstDate );
@@ -182,6 +184,7 @@ var chart = AmCharts.makeChart( "chartdiv", {
     } ]
   }
 } );
+
 </script>
 
 <!-- HTML -->
