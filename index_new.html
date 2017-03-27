@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+
+	<head>
+
+		<title>Chart UNA</title>
+
+		<!-- Style -->
+		<link rel="stylesheet" type="text/css" href="./sources/style.css">
+		
+		<!-- External javascript sources -->
+		<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+		<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+		<script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+		<!-- Chart javascript code -->
+		<script src="./sources/chart.js"></script>
+	</head>
+
+
+		<!-- Chart -->
+		<div id="chartdiv"></div>
+
+		<!-- Selectors -->
+		<div id="selectors">
+			<!-- Dates -->
+			<div id="dates">
+				<input type="date" id="fromDate" onfocusout="refreshDate()" data-date-inline-picker="false" data-date-open-on-focus="true"> 
+				- 
+				<input type="date" id="toDate" onfocusout="refreshDate()" data-date-inline-picker="false" data-date-open-on-focus="true">
+				<input type="button" value="Atualizar" onclick="">
+			</div>
+			
+			<!-- Buttons -->
+			<div id="buttons">
+				<input type="button" value="Ano" onclick="ytd();">
+				<input type="button" value="1 ano" onclick="year(1);">
+				<input type="button" value="3 anos" onclick="year(3);">
+				<input type="button" value="5 anos" onclick="year(5);">
+				<input type="button" value="MAX" onclick="return_max();" class="max" >
+			</div>
+		</div>
+		
+	</body>
+
+
+</html>
