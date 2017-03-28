@@ -123,9 +123,6 @@ function refreshDateString(event){
 }
 
 function refreshDate(){
-    console.log("StartDate: " + chart.startDate);
-    console.log("EndDate: " + chart.endDate);
-
     var fromTxt = document.getElementById("fromDate").value;
     var toTxt = document.getElementById("toDate").value;
 
@@ -144,19 +141,24 @@ function ytd(){
 
     document.getElementById("toDate").value = dateToString(today);
 
-    var correctDate = new Date(today.getFullYear() -1,11,31);
+    var correctDate = correctDate(new Date(today.getFullYear() -1,11,31));
+
+    document.getElementById("fromDate").value = dateToString(correctDate);
+
+    refreshDate();
+}
+
+function correctDate(ideal){
     var i = 0;
     do{
         i ++;
         var tempDate = new Date(chart.chartData[chart.chartData.length-i].category); 
     }
-    while(tempDate.getTime() > correctDate.getTime());
+    while(tempDate.getTime() > ideal.getTime());
 
-    alert(tempDate);
+    //console.log("Ideal: " + ideal + ", Temp Date: " + tempDate);
 
-    document.getElementById("fromDate").value = dateToString(new Date(today.getFullYear() -1,11,30));
-
-    refreshDate();
+    return tempDate;
 }
 
 function year(amount){
@@ -165,6 +167,7 @@ function year(amount){
     document.getElementById("toDate").value = dateToString(today);
 
     today.setFullYear(today.getFullYear() - amount);
+    today = correctDate(today);
     document.getElementById("fromDate").value = dateToString(today);
     
     refreshDate();
