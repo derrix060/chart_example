@@ -108,9 +108,6 @@ var chart = AmCharts.makeChart("chartdiv",
             "equalWidths": 0
         },
         "listeners":[{
-            "event": "rendered",
-            "method": return_max
-        },{
             "event": "zoomed",
             "method": refreshDateString
         }]
@@ -141,9 +138,9 @@ function ytd(){
 
     document.getElementById("toDate").value = dateToString(today);
 
-    var correctDate = correctDate(new Date(today.getFullYear() -1,11,31));
+    today = correctDate(new Date(today.getFullYear() -1,11,31));
 
-    document.getElementById("fromDate").value = dateToString(correctDate);
+    document.getElementById("fromDate").value = dateToString(today);
 
     refreshDate();
 }
